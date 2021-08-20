@@ -1,17 +1,71 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 
-const Login = () => {
+const Login = (props) => {
   // make a post request to retrieve a token from the api
   // when you have handled the token, navigate to the BubblePage route
+  const { push } = props.history
 
-  const error = "";
-  //replace with error state
+  const initialCredentials = {
+    username: '',
+    password: ''
+  };
+  const initialError = "";
+  
+  const [credentials, setCredentials] = useState(initialCredentials);
+  const [error, setError] = useState(initialError);
+
+  const handleChange = e => {
+    setCredentials({
+      ...credentials,
+      [e.target.name]: e.target.value
+    })
+  };
+
+  const login = e => {
+    e.preventDefault();
+    axios.post('http://localhost:5000/api/login', credentials)
+      .then(res=> {
+        localStorage.setItem('token', res.data.payload);
+        setError(initialError);
+        setCredentials(initialCredentials);
+        push('/bubble');
+      })
+      .catch(err=> {
+        setError('Username or Password not valid');
+        console.log(err);
+        setCredentials(initialCredentials);
+      })
+  };
 
   return (
     <div>
       <h1>Welcome to the Bubble App!</h1>
       <div data-testid="loginForm" className="login-form">
-        <h2>Build login form here</h2>
+        <form onSubmit={login}>
+          <label>Username</label>
+          <br/>
+          <input
+            type='text'
+            name='username'
+            value={credentials.username}
+            onChange={handleChange}
+            id='username'
+          />
+          <br/>
+          <br/>
+          <label>Password</label>
+          <br/>
+          <input
+            type='password'
+            name='password'
+            value={credentials.password}
+            onChange={handleChange}
+            id='password'
+          />
+          <br/>
+          <button id='submit'>Log In</button>
+        </form>
       </div>
 
       <p id="error" className="error">{error}</p>
