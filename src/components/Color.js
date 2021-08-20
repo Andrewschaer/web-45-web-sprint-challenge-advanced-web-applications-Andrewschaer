@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Color = (props) => {
-    const {color, setEditColor, toggleEdit, deleteColor} = props;
+    const {color, setEditColor, toggleEdit, deleteColor, setEditColorID} = props;
 
     const handleDelete = (e) => {
         e.stopPropagation();
@@ -11,6 +11,7 @@ const Color = (props) => {
 
     const handleEdit = (e) => {
         setEditColor(color);
+        setEditColorID(color.id);
         toggleEdit(true);
     }
 

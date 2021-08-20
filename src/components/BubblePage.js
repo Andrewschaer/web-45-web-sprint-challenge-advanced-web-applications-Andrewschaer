@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import axiosWithAuth from "../helpers/axiosWithAuth";
 import Bubbles from "./Bubbles";
 import ColorList from "./ColorList";
 import fetchColorService from '../services/fetchColorService';
@@ -16,7 +16,21 @@ const BubblePage = () => {
     setEditing(value);
   };
 
-  const saveEdit = (editColor) => {
+  const saveEdit = (editColor, id) => {
+    axiosWithAuth()
+      .put(`/colors/${id}`, editColor)
+      .then(res=>{
+        setColors(colors.map(color =>{
+          if (color.id === id) {
+            return editColor
+          } else {
+            return color
+          } 
+        }))
+      })
+      .catch(err=>{
+        console.log('There was an error saving your edited color - please try again', err)
+      })
   };
 
   const deleteColor = (colorToDelete) => {
