@@ -9,7 +9,10 @@ const BubblePage = () => {
   const [editing, setEditing] = useState(false);
 
   useEffect(()=>{
-    fetchColorService(setColors);
+    fetchColorService()
+      .then(res=> {
+        setColors(res.data);
+      });
   }, []);
 
   const toggleEdit = (value) => {
