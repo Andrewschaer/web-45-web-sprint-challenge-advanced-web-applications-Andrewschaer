@@ -31,7 +31,7 @@ In this project you will create a login page and request a token from the server
 * [n/a] Open the assignment in Canvas and click on the "Set up git" option.
 * [n/a] Follow instructions to set up Codegrade's Webhook and Deploy Key, making sure your deployment is set to your `<firstName-lastName>`.
 * [X] Push your first commit: `git commit --allow-empty -m "first commit" && git push`
-* [ ] Check to see that Codegrade has accepted your git submission.
+* [X] Check to see that Codegrade has accepted your git submission.
 
 ### Task 3: Project Requirements
 
@@ -51,7 +51,7 @@ Your finished project must include all of the following requirements. **Unlike o
 * [X] Save the token to localStorage.
 * [X] Build a `axiosWithAuth` module within the helpers folder to create an instance of axios with the authentication header.
 * [X] Build a `PrivateRoute` component within the components folder and use it to protect the route that renders the `BubblesPage` component.
-* [ ] In `App.js`, build the backend to the logout button. When pressed, send an http request to the logout endpoint and remove the authentication token from localStorage. Use window.location.href to redirect to the login page.
+* [X] In `App.js`, build the backend to the logout button. When pressed, send an http request to the logout endpoint and remove the authentication token from localStorage. Use window.location.href to redirect to the login page.
 
 #### Consuming the API
 > *Add in the http requests and state changes needed to connect our api to the web application. Consider the effect of authentication on your api requests.*

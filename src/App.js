@@ -33,7 +33,7 @@ const App = (props) => {
       </div>
   );
 }
-
+// Explanation for withRouter usage below: I missed the part in the instructions to use window.location.href to redirect a successful logout to the login page.  Using withRouter allowed me to also perform this redirect, by wrapping App in withRouter in this export and giving App access to the props that include history
 export default withRouter(App);
 
 //Task List:
