@@ -22,7 +22,7 @@ const BubblePage = () => {
       .then(res=>{
         setColors(colors.map(color =>{
           if (color.id === id) {
-            return editColor
+            return res.data
           } else {
             return color
           } 
@@ -34,6 +34,15 @@ const BubblePage = () => {
   };
 
   const deleteColor = (colorToDelete) => {
+     console.log(colorToDelete.id)
+    axiosWithAuth()
+      .delete(`/colors/${colorToDelete.id}`)
+      .then(res=>{
+        setColors(colors.filter((color) => color.id !== Number(res.data)));
+      })
+      .catch(err=>{
+        console.log('There was an error deleting the color - please try again', err)
+      })
   };
 
   return (
